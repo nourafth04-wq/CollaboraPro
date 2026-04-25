@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+/* ═══════════════════════════════════════════
+   COLLABORAPRO — PIXEL THEME
+   JetBrains Mono · Sharp edges · No radius
+   ═══════════════════════════════════════════ */
+
+:root {
+  --font: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Colors — same brand, pixel personality */
+  --bg:      #eef1f7;
+  --s:       #ffffff;
+  --s2:      #f0f2f8;
+  --s3:      #e4e8f2;
+  --bd:      #c8cfdf;
+  --bd2:     #a8b0cc;
+  --ink:     #0a0e1a;
+  --ink2:    #3d4666;
+  --ink3:    #7a84a8;
+
+  --blue:    #1a56db;
+  --blue-l:  #dce8ff;
+  --blue-d:  #0e3fb3;
+
+  --green:   #0f7a3e;
+  --green-l: #d4f5e3;
+  --green-d: #0a5c2e;
+
+  --red:     #c42b2b;
+  --red-l:   #ffe0e0;
+  --red-d:   #9a1a1a;
+
+  --yellow:  #b36b00;
+  --yellow-l:#fff3cc;
+  --yellow-d:#8a5200;
+
+  /* Pixel shadows — hard offset, no blur */
+  --sh:    3px 3px 0 var(--bd2);
+  --sh-lg: 5px 5px 0 var(--bd2);
+  --sh-dk: 3px 3px 0 #000;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Body ── */
+body {
+  font-family: var(--font) !important;
+  background: var(--bg) !important;
+  color: var(--ink) !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Blink cursor animation ── */
+@keyframes px-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.px-cursor {
+  display: inline-block;
+  width: 9px; height: 15px;
+  background: var(--blue);
+  animation: px-blink 1.1s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
+/* ── Scanline overlay ── */
+.px-scanlines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent, transparent 3px,
+    rgba(0,0,0,.018) 3px, rgba(0,0,0,.018) 4px
+  );
+}
+
+/* ── Section labels ── */
+.px-sec {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--ink3); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.px-sec::before { content: '//'; color: var(--blue); font-weight: 700; }
+.px-sec::after  {
+  content: ''; flex: 1; height: 1px;
+  background: repeating-linear-gradient(90deg, var(--bd) 0, var(--bd) 4px, transparent 4px, transparent 8px);
+}
+
+/* ── Pixel dashed divider ── */
+.px-divider {
+  border: none;
+  border-top: 2px dashed var(--bd);
+  margin: 28px 0 20px;
+}
+
+/* ── Cards ── */
+.px-card {
+  background: var(--s);
+  border: 2px solid var(--bd2);
+  border-radius: 0 !important;
+  box-shadow: var(--sh);
+}
+.px-card-lg {
+  background: var(--s);
+  border: 2px solid var(--bd2);
+  border-radius: 0 !important;
+  box-shadow: var(--sh-lg);
+}
+
+/* ── Buttons ── */
+.px-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+  height: 32px; padding: 0 14px;
+  font-family: var(--font); font-size: 10px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+  border: 2px solid; border-radius: 0;
+  cursor: pointer; white-space: nowrap;
+  transition: transform .08s, box-shadow .08s;
+  text-decoration: none;
+}
+.px-btn:active { transform: translate(2px,2px); box-shadow: none !important; }
+.px-btn:disabled { opacity: .45; cursor: not-allowed; }
+
+.btn-primary  { background: var(--blue);    color: #fff;          border-color: var(--blue-d);  box-shadow: 3px 3px 0 var(--blue-d); }
+.btn-dark     { background: var(--ink);     color: #fff;          border-color: #000;           box-shadow: 3px 3px 0 #000; }
+.btn-ghost    { background: transparent;    color: var(--ink2);   border-color: var(--bd2);     box-shadow: 2px 2px 0 var(--bd); }
+.btn-danger   { background: var(--red-l);   color: var(--red);    border-color: var(--red-d);   box-shadow: 2px 2px 0 var(--red-d); }
+.btn-success  { background: var(--green-l); color: var(--green);  border-color: var(--green-d); box-shadow: 2px 2px 0 var(--green-d); }
+
+.px-btn-xs { height: 24px; padding: 0 8px;  font-size: 9px; }
+.px-btn-sm { height: 28px; padding: 0 10px; font-size: 9px; }
+.px-btn-lg { height: 38px; padding: 0 20px; font-size: 11px; }
+
+/* ── Tags / Badges ── */
+.px-tag {
+  display: inline-flex; align-items: center;
+  padding: 2px 8px;
+  font-family: var(--font); font-size: 9px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+  border: 1.5px solid; border-radius: 0;
+}
+.tag-blue   { background: var(--blue-l);   color: var(--blue-d);  border-color: var(--blue); }
+.tag-green  { background: var(--green-l);  color: var(--green-d); border-color: var(--green); }
+.tag-red    { background: var(--red-l);    color: var(--red-d);   border-color: var(--red); }
+.tag-yellow { background: var(--yellow-l); color: var(--yellow-d);border-color: var(--yellow); }
+.tag-gray   { background: var(--s2);       color: var(--ink3);    border-color: var(--bd); }
+
+/* ── Inputs ── */
+.px-input {
+  width: 100%; height: 36px; padding: 0 10px;
+  font-family: var(--font); font-size: 12px;
+  background: var(--s2); color: var(--ink);
+  border: 2px solid var(--bd2); border-radius: 0;
+  outline: none; transition: border-color .12s;
+}
+.px-input:focus { border-color: var(--blue); background: var(--s); }
+.px-input::placeholder { color: var(--ink3); }
+select.px-input option { background: var(--s); }
+
+/* ── Alerts — fixed top-right, fully self-contained ── */
+@keyframes px-slide-in {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Page wrapper ── */
+.px-page {
+  min-height: 100vh;
+  background: var(--bg);
+}
+.px-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px;
+}
+
+/* ── Terminal bar (window chrome) ── */
+.term-bar {
+  background: var(--s2);
+  border: 2px solid var(--bd2);
+  border-bottom: none;
+  display: flex; align-items: center;
+  padding: 0;
+}
+.term-dots { display: flex; gap: 5px; padding: 8px 12px; border-right: 1px solid var(--bd); }
+.term-dot  { width: 10px; height: 10px; border: 1.5px solid; }
+.td-red    { border-color: var(--red-d);   background: var(--red-l); }
+.td-yellow { border-color: var(--yellow-d);background: var(--yellow-l); }
+.td-green  { border-color: var(--green-d); background: var(--green-l); }
+.term-path {
+  font-size: 9px; font-weight: 600;
+  color: var(--ink3); padding: 0 12px;
+  letter-spacing: .03em; flex: 1;
+}
+.term-path .hi { color: var(--blue); }
+
+/* ── Pixel progress (segmented) ── */
+.px-segs { display: flex; gap: 2px; margin-top: 8px; }
+.px-seg  { width: 5px; height: 5px; border: 1px solid var(--bd2); background: transparent; }
+.px-seg.blue   { background: var(--blue);   border-color: var(--blue-d); }
+.px-seg.green  { background: var(--green);  border-color: var(--green-d); }
+.px-seg.red    { background: var(--red);    border-color: var(--red-d); }
+.px-seg.yellow { background: var(--yellow); border-color: var(--yellow-d); }
+
+/* ── Pixel bar (block row) ── */
+.px-bar-row { display: flex; gap: 2px; }
+.px-bar-block { width: 8px; height: 8px; border: 1.5px solid var(--bd2); }
+.px-bar-block.filled { border-color: currentColor; }
+
+/* ── Kanban ── */
+.kc-stripe {
+  position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--s2); }
+::-webkit-scrollbar-thumb { background: var(--bd2); }
+::-webkit-scrollbar-thumb:hover { background: var(--ink3); }
+
+/* ── Auth pages override (keep JetBrains Mono on auth too) ── */
+.auth-shell { font-family: var(--font); }
